@@ -1,0 +1,64 @@
+﻿@model IEnumerable<otoyikama.Models.Model.Hizmet>
+
+@{
+
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Layout.cshtml";
+}
+<head>
+    <link href="~/Content/css/hizmet.css" rel="stylesheet" />
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+
+
+<div class="container">
+    <table class="container">
+        <thead>
+            <tr>
+                <th><h1>Yeni Hizmet Oluştur</h1></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <div class="form">
+
+                        <form class="form-validate form-horizontal" id="feedback_form" method="post" action="/Hizmet/Create" enctype="multipart/form-data">
+
+
+                            <div class="isim">
+                                <label for="name"></label>
+                                <input style="color: black" type="text" placeholder="Isim" name="name" id="name" required>
+
+
+                            </div>
+                            <div class="price">
+                                <label for="name"></label>
+                                <input style="color: black" type="text" placeholder="Fiyat" name="price" id="price" required>
+
+
+                            </div>
+
+
+                        </div>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10">
+                            <button type="submit" class="btn btn-dark">Kaydet</button>
+                            <button type="submit" class=" btn btn-dark"><a href="/Hizmet/Index/">İptal et</a></button>
+
+                        </div>
+                    </div>
+                    </form>
+                </th>
+            </tr>
+
+
+        </tbody>
+    </table>
+
+</div>

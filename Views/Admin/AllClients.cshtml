@@ -1,0 +1,59 @@
+﻿@model otoyikama.Models.Model.ViewModel
+@{
+    ViewBag.Title = "AllClients";
+    Layout = "~/Views/Layout.cshtml";
+    
+}
+<head>
+    <link href="~/Content/css/alert.css" rel="stylesheet" />
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="~/Content/css/hizmet.css" rel="stylesheet" />
+</head>
+
+<div class=" container">
+    <table class="container">
+
+        <thead>
+            <tr>
+                <th><h1>Geçmiş Müşteriler</h1></th>
+            </tr>
+
+        </thead>
+        <tbody>
+            @foreach (var item in Model.islem.Where(x => x.onay == true))
+            {
+            <tr>
+                <td>@item.plaka&emsp;@item.Musteri.isim&nbsp;@item.Musteri.soyisim&emsp;@item.Musteri.telefon</td>
+                @{ 
+                    string date = item.cikistarihi.HasValue ? item.cikistarihi.Value.ToString() : string.Empty;
+                }
+
+                <td style="color: black">Giriş Tarihi <br> @item.giristarihi.ToString("dd/MM/yyyy h:mm")</td>
+                <td style="color: black">Çıkış Tarihi <br> @date</td>
+                <td style="color: black">Fiyat <br> @item.toplamfiyat</td>
+
+                <td style="color: black">
+                    @foreach (var item1 in Model.islemhizmet)
+                    {
+                        if (item1.islem_id == item.islem_id)
+                        {
+                            @item1.Hizmet.hizmetisim
+                            <br>
+
+                        }
+
+                    }
+                </td>
+            </tr>
+
+
+
+
+            }
+
+        </tbody>
+    </table>
+
+</div>

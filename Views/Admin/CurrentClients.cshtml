@@ -1,0 +1,88 @@
+﻿@model otoyikama.Models.Model.ViewModel
+@{
+    ViewBag.Title = "CurrentClients";
+    Layout = "~/Views/Layout.cshtml";
+    int islemid = 0;
+}
+<head>
+    <link href="~/Content/css/alert.css" rel="stylesheet" />
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="~/Content/css/hizmet.css" rel="stylesheet" />
+</head>
+
+@*@if (TempData["Success"] != null)
+{
+    <div style="margin:auto" class="alert alert-success-alt alert-dismissable">
+        <span class="glyphicon glyphicon-certificate"></span>
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+            ×
+        </button><strong>İşlem başarılı!</strong> @TempData["Success"]
+    </div>
+}
+@if (TempData["Error"] != null)
+{
+    <div style="margin:auto" class="alert alert-danger-alt alert-dismissable">
+        <span class="glyphicon glyphicon-certificate"></span>
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+            ×
+        </button><strong>Hata!</strong> @TempData["Error"]
+    </div>
+}*@
+
+
+
+
+<div class=" container">
+    <table class="container">
+
+        <thead>
+            <tr>
+                <th><h1>İşlemdeki Müşteriler</h1></th>
+            </tr>
+
+        </thead>
+        <tbody>
+            @foreach (var item in Model.islem.Where(x=>x.onay==false))
+            {
+            <tr>
+                <td>@item.plaka&emsp;@item.Musteri.isim&nbsp;@item.Musteri.soyisim&emsp;@item.Musteri.telefon</td>
+                @{
+                    islemid = item.islem_id;
+                }
+
+                <td style="color: black">Giriş Tarihi <br> @item.giristarihi.ToString("dd/MM/yyyy h:mm")</td>
+                <td style="color: black">Fiyat <br> @item.toplamfiyat</td>
+
+
+                <td style="color: black">
+                    @foreach (var item1 in Model.islemhizmet)
+                    {
+                        if (item1.islem_id == item.islem_id)
+                        {
+                            @item1.Hizmet.hizmetisim
+                            <br>
+
+
+                        }
+
+                    }
+                </td>
+                <td style="color:black">
+                    <form method="post" action="/Admin/CurrentClients">
+                        <button type="submit" class="btn btn-dark">İşlemi Bitir</button>
+                        <input type="hidden" name="islemid" value="@islemid">
+                    </form>
+                </td>
+            </tr>
+
+
+
+
+            }
+
+        </tbody>
+    </table>
+
+</div>

@@ -1,0 +1,26 @@
+﻿label.check {
+    cursor: pointer
+}
+
+    label.check input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        visibility: hidden;
+        pointer-events: none
+    }
+
+    label.check span {
+        padding: 7px 14px;
+        border: 2px solid #808080;
+        display: inline-block;
+        color: #808080;
+        border-radius: 3px;
+        text-transform: uppercase
+    }
+
+    label.check input:checked + span {
+        border-color: #fff;
+        background-color: #000000;
+        color: #fff
+    }

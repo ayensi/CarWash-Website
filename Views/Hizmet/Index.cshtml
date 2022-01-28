@@ -1,0 +1,49 @@
+﻿@model IEnumerable<otoyikama.Models.Model.Hizmet>
+
+@{
+
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layout.cshtml";
+}
+<head>
+    <link href="~/Content/css/hizmet.css" rel="stylesheet" />
+    <link href="~/Content/css/alert.css" rel="stylesheet" />
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<div class=" container">
+
+    <table class="container">
+
+        <thead>
+            <tr>
+                <th><h1>Hizmetler</h1></th>
+                <th><h1>Fiyat</h1></th>
+                <th><h1>Eylem</h1></th>
+            </tr>
+
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>@item.hizmetisim</td>
+                <td style="color:black">@item.fiyat</td>
+                <td><button type="submit" class="btn btn-dark"><a href="/Hizmet/Delete/@item.hizmet_id">Sil</a></button></td>
+           
+            </tr>
+
+            }
+            <tr>
+                <th>
+                    <button type="submit" class="btn btn-dark"><a href="/Hizmet/Create/">yeni oluştur</a></button>
+
+                </th>
+                <th></th>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+

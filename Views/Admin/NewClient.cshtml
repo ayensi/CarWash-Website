@@ -1,0 +1,71 @@
+﻿@model otoyikama.Models.Model.ViewModel
+@{
+    ViewBag.Title = "NewClient";
+    Layout = "~/Views/Layout.cshtml";
+}
+<head>
+    <link href="~/Content/css/form.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/checkboxes.css" rel="stylesheet" />
+
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+</head>
+
+    <div id="container">
+
+        <h1 style="color: white;">&bull; Yeni İşlem &bull;</h1>
+        <div class="underline">
+        </div>
+        <div class="icon_wrapper">
+            <i class="fas fa-car fa-5x"></i>
+        </div>
+        <form action="/Admin/NewClient" method="post">
+            <div class="name">
+                <label for="name"></label>
+                <input style="color: white" type="text" placeholder="İsim" name="name" id="name_input" required>
+            </div>
+            <div class="email">
+                <label for="email"></label>
+                <input style="color: white" type="text" placeholder="Soyisim" name="lastname" id="email_input" required>
+            </div>
+            <div class="telephone">
+                <label for="name"></label>
+                <input style="color: white" type="text" placeholder="Telefon Numarası" name="telephone" id="telephone_input" minlength="11" maxlength="11" required>
+            </div>
+            <div class="telephone">
+                <label for="name"></label>
+                <input style="color: white" type="text" placeholder="Plaka" maxlength="8" name="plate" id="plate_input" required>
+            </div>
+
+            <label style="color:white" for="hizmet">Hizmetler</label>
+            <br />
+
+            @for (var i = 0; i < Model.hizmet.Count(); i++)
+            {
+                <label class="check"> <input type="checkbox" id="myParams" name="myParams" value="@Model.hizmet[i].hizmet_id"> <span>@Model.hizmet[i].hizmetisim</span> </label>
+
+            }
+            <br />
+            <br />
+
+
+            <button type="submit" id="form_button">Müşteri Ekle</button>
+        </form>
+</div><!-- // End #container -->
+<script type="text/javascript">
+    $(document).ready(function () {
+        // do not allow users to enter spaces:
+        $("#plate_input").on({
+            keydown: function (event) {
+                if (event.which === 32)
+                    return false;
+            },
+            // if a space copied and pasted in the input field, replace it (remove it):
+            change: function () {
+                this.value = this.value.replace(/\s/g, "");
+            }
+        });
+    });
+</script>
