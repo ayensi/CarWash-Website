@@ -12,7 +12,7 @@
 cred.config
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
-
+*.cshtml linguist-vendored
 # Mono auto generated files
 mono_crash.*
 
